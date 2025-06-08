@@ -9,6 +9,7 @@ import com.task.discount.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
@@ -26,6 +27,7 @@ public class OrderService {
         orderMapper = OrderMapper.INSTANCE;
     }
 
+    @Transactional
     public OrderDTO createOrder(OrderDTO orderDTO, Integer customerId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
