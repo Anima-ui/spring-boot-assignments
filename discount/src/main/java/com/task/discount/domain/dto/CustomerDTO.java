@@ -1,6 +1,5 @@
 package com.task.discount.domain.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
