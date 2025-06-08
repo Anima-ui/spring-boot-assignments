@@ -22,8 +22,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @DecimalMin(value = "0.0", inclusive = false)
+    @Column(nullable = false)
     private BigDecimal totalPrice;
 
     @ManyToOne

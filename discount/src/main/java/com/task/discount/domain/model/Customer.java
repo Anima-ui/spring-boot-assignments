@@ -23,22 +23,22 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "The first name is required")
     @Column(nullable = false)
     private String firstName;
 
-    @NotBlank(message = "The last name is required")
     @Column(nullable = false)
     private String lastName;
 
+    @Builder.Default
     @Column(nullable = false)
-    private Integer ordersCount;
+    private Integer ordersCount = 0;
 
     @Builder.Default
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private CustomerStatus status;
+    private CustomerStatus status = CustomerStatus.REGULAR;
 }

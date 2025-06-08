@@ -3,6 +3,7 @@ package com.task.discount.controller;
 import com.task.discount.domain.dto.CustomerDTO;
 import com.task.discount.domain.model.Customer;
 import com.task.discount.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/create")
-    public ResponseEntity<Customer> createCustomer(@RequestBody CustomerDTO customer) {
-        Customer savedCustomer = customerService.createCustomer(customer);
-        return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
+    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customer) {
+        customerService.createCustomer(customer);
+        return new ResponseEntity<>(customer, HttpStatus.CREATED);
     }
 }
