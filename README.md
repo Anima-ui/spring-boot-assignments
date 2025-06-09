@@ -1,1 +1,1 @@
-# **This repository contains various assignments, exercises, and practice projects related to Spring Boot.**
+# **This repository contains various assignments, exercises, and practice projects related to Spring Boot and Java.**
