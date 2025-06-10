@@ -2,7 +2,7 @@ package controllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.discount.DiscountApplication;
-import com.task.discount.controller.CustomerController;
+import com.task.discount.controller.customer.CustomerController;
 import com.task.discount.domain.dto.CustomerDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

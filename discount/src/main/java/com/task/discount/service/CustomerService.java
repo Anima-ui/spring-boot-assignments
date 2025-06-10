@@ -20,8 +20,9 @@ public class CustomerService {
         this.customerMapper = CustomerMapper.INSTANCE;
     }
 
-    public void createCustomer(CustomerDTO customer) {
-        customerRepository.save(customerMapper.customerDTOToCustomer(customer));
+    public CustomerDTO createCustomer(CustomerDTO customer) {
+        Customer savedCustomer = customerRepository.save(customerMapper.customerDTOToCustomer(customer));
+        return customerMapper.customerToCustomerDTO(savedCustomer);
     }
 
     public void updateCustomerStatus(Customer customer) {

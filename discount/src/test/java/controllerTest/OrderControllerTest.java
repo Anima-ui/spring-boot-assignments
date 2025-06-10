@@ -2,7 +2,7 @@ package controllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.discount.DiscountApplication;
-import com.task.discount.controller.OrderController;
+import com.task.discount.controller.order.OrderController;
 import com.task.discount.domain.dto.OrderDTO;
 import com.task.discount.service.OrderService;
 import org.junit.jupiter.api.Test;
