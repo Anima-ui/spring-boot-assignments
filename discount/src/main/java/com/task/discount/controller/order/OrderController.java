@@ -21,7 +21,7 @@ public class OrderController implements OrderAPI {
 
     @Override
     @PostMapping(path = "/{customerId}")
-    public ResponseEntity<OrderDTO> createOrder(@PathVariable Integer customerId,
+    public ResponseEntity<OrderDTO> createOrder(@PathVariable(value = "customerId") Integer customerId,
                                                 @Valid @RequestBody OrderDTO orderDTO) {
 
         OrderDTO savedOrder = orderServiceImpl.createOrder(orderDTO, customerId);
