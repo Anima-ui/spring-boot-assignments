@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.discount.DiscountApplication;
 import com.task.discount.controller.order.OrderController;
 import com.task.discount.domain.dto.OrderDTO;
-import com.task.discount.service.OrderService;
+import com.task.discount.service.impl.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class OrderControllerTest {
     private MockMvc mvc;
 
     @MockitoBean
-    private OrderService orderService;
+    private OrderServiceImpl orderServiceImpl;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -47,7 +47,7 @@ public class OrderControllerTest {
                 .totalPrice(BigDecimal.valueOf(108))
                 .build();
 
-        Mockito.when(orderService.createOrder(Mockito.any(OrderDTO.class), Mockito.eq(customerId)))
+        Mockito.when(orderServiceImpl.createOrder(Mockito.any(OrderDTO.class), Mockito.eq(customerId)))
                 .thenReturn(savedDTO);
 
         String orderJson = objectMapper.writeValueAsString(inputDTO);

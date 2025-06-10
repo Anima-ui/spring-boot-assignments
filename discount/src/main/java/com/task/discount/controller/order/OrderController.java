@@ -1,7 +1,7 @@
 package com.task.discount.controller.order;
 
 import com.task.discount.domain.dto.OrderDTO;
-import com.task.discount.service.OrderService;
+import com.task.discount.service.impl.OrderServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/v1/order")
 public class OrderController implements OrderAPI {
 
-    private final OrderService orderService;
+    private final OrderServiceImpl orderServiceImpl;
 
     @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public OrderController(OrderServiceImpl orderServiceImpl) {
+        this.orderServiceImpl = orderServiceImpl;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class OrderController implements OrderAPI {
     public ResponseEntity<OrderDTO> createOrder(@PathVariable Integer customerId,
                                                 @Valid @RequestBody OrderDTO orderDTO) {
 
-        OrderDTO savedOrder = orderService.createOrder(orderDTO, customerId);
+        OrderDTO savedOrder = orderServiceImpl.createOrder(orderDTO, customerId);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
 }
