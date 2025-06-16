@@ -25,7 +25,7 @@ public class FileUploadController {
         if (file.isEmpty()) {
             throw new IllegalArgumentException("File is empty");
         }
-        if(Objects.equals(file.getContentType(), "text/plain")) {
+        if(!Objects.equals(file.getContentType(), "text/plain")) {
             throw new IllegalArgumentException("File is not a text file");
         }
         if (file.getSize() > 5 * 1024 * 1024) {
