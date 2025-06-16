@@ -10,7 +10,7 @@ To run the app write in the console:
 To access API documentation open in your browser: `localhost:8080/swagger-ui-docs`
 Then search for a docs using: `/api-docs/discount`
 
-### REQUIREMENTS
+## REQUIREMENTS
 Spring Boot application with the below requirements was implemented:
 
 - Creation of Customers.
