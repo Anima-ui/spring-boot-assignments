@@ -11,7 +11,6 @@ Spring Boot service that accepts a text file upload (.txt) via multipart/form-da
 - Analyze file content to get: total lines, total words, empty lines, average words per line, longest word
 - Return results as JSON
 - Validate file type and size; return HTTP 400 on invalid input
-- Handle exceptions globally
 
 ## Notes 
 
