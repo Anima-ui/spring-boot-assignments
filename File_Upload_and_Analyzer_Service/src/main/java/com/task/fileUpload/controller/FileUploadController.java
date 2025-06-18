@@ -32,7 +32,8 @@ public class FileUploadController {
     @Operation(summary = "Upload a file", description = "Takes a file and returns the info")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The analysis was successful",
-                    content = @Content(schema = @Schema(implementation = FileAnalysisResult.class))
+                    content = @Content(schema = @Schema(implementation = FileAnalysisResult.class),
+                                        mediaType = "application/json")
             ),
             @ApiResponse(responseCode = "400", description = "Something went wrong",
                     content = @Content(schema = @Schema())
