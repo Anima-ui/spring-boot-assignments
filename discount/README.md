@@ -24,4 +24,4 @@ Spring Boot application with the below requirements was implemented:
 - When a customer creates an order, if they are a gold customer, automatically 10% discount is applied to the order. 20% for platinum customers.
 - Since it is assumed that the customer has already made the full payment during creation of the order, this discount information has to be kept safe by the application.
 - We need to keep track of how much discount is given to which customer and for which order, so that customers can claim money back later.
-- It is not mandatory to implement any other entities which are not mentioned here, like products or payments, etc.
+- It is not mandatory to implement any other entities that are not mentioned here, like products or payments, etc.
