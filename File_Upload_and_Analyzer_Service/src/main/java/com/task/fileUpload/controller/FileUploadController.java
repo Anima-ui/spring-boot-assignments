@@ -1,6 +1,14 @@
 package com.task.fileUpload.controller;
 
 import com.task.fileUpload.model.FileAnalysisResult;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,18 +26,28 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/upload")
+@Tag(name = "File analyzer", description = "API for analysis a .txt file")
 public class FileUploadController {
 
+    @Operation(summary = "Upload a file", description = "Takes a file and returns the info")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The analysis was successful",
+                    content = @Content(schema = @Schema(implementation = FileAnalysisResult.class))
+            ),
+            @ApiResponse(responseCode = "400", description = "Something went wrong",
+                    content = @Content(schema = @Schema())
+            )
+    })
     @PostMapping
-    public FileAnalysisResult uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<FileAnalysisResult> uploadFile(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            throw new IllegalArgumentException("File is empty");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if(!Objects.equals(file.getContentType(), "text/plain")) {
-            throw new IllegalArgumentException("File is not a text file");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if (file.getSize() > 5 * 1024 * 1024) {
-            throw new IllegalArgumentException("File size is too big");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         try(BufferedReader reader = new BufferedReader
                 (new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))){
@@ -45,7 +63,13 @@ public class FileUploadController {
                     .max(Comparator.comparingInt(String::length))
                     .orElse("");
 
-            return new FileAnalysisResult(totalLines, totalWords, emptyLines, averageWordsPerLine, longestWord);
+            return new ResponseEntity<>(new FileAnalysisResult(
+                    totalLines,
+                    totalWords,
+                    emptyLines,
+                    averageWordsPerLine,
+                    longestWord),
+                    HttpStatus.OK);
 
         }catch (IOException e) {
             throw new IllegalArgumentException("File is not a text file");

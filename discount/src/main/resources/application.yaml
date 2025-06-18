@@ -27,4 +27,4 @@ springdoc:
   swagger-ui:
     path: swagger-ui-docs
   api-docs:
-    path: api-docs/discount
+      path: api-docs/discount
