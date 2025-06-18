@@ -52,7 +52,7 @@ public class OrderControllerTest {
 
         String orderJson = objectMapper.writeValueAsString(inputDTO);
 
-        mvc.perform(MockMvcRequestBuilders.post("/api/v1/order/" + customerId + "/create")
+        mvc.perform(MockMvcRequestBuilders.post("/api/v1/order/" + customerId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(orderJson))
                 .andExpect(status().isCreated())
